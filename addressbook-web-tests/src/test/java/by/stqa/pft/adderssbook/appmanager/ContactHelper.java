@@ -40,8 +40,6 @@ public class ContactHelper extends HelperBase {
     click(By.name("amonth"));
     selectByVisibleText(By.name("amonth"), contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
-    click(By.name("new_group"));
-    selectByVisibleText(By.name("new_group"), contactData.getGroup());
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getRealHome());
     type(By.name("notes"), contactData.getNotes());
@@ -65,5 +63,13 @@ public class ContactHelper extends HelperBase {
 
   public void closeAlertPopup() {
     wd.switchTo().alert().accept();
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("(//input[@name='update'])[2]"));
   }
 }

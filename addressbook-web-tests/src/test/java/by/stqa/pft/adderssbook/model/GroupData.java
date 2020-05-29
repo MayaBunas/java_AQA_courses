@@ -1,4 +1,4 @@
-package by.stqa.pft.adderssbook;
+package by.stqa.pft.adderssbook.model;
 
 public class GroupData {
   private final String name;

@@ -10,7 +10,7 @@ public class GroupModificationTests extends TestBase{
     app.getNavigationHelper().goToGroupPage();
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGroupForm(new GroupData("Family", "Our family photo.", "I love my family!"));
+    app.getGroupHelper().fillGroupForm(new GroupData("Family", null, "I love my mom!"));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
   }

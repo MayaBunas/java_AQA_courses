@@ -3,6 +3,7 @@ package by.stqa.pft.adderssbook.appmanager;
 import by.stqa.pft.adderssbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class ContactHelper extends HelperBase {
 
@@ -14,7 +15,7 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -40,6 +41,11 @@ public class ContactHelper extends HelperBase {
     click(By.name("amonth"));
     selectByVisibleText(By.name("amonth"), contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
+    if (creation) {
+      selectByVisibleText(By.name("new_group"), contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getRealHome());
     type(By.name("notes"), contactData.getNotes());

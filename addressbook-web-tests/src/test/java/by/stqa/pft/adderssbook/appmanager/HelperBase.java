@@ -32,9 +32,9 @@ public class HelperBase {
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
-  public boolean isElementPresent(By by) {
+  public boolean isElementPresent(By locator) {
     try {
-      wd.findElement(by);
+      wd.findElement(locator);
       return true;
     } catch (NoSuchElementException e) {
       return false;

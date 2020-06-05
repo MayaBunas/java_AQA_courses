@@ -29,7 +29,12 @@ public class HelperBase {
   }
 
   protected void selectByVisibleText(By locator, String text) {
-    new Select(wd.findElement(locator)).selectByVisibleText(text);
+    if (text != null) {
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (!text.equals(existingText)) {
+        new Select(wd.findElement(locator)).selectByVisibleText(text);
+      }
+    }
   }
 
   public boolean isElementPresent(By locator) {

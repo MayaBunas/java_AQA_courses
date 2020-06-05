@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class ContactModificationTests extends TestBase {
 
   @Test
-  public void testContactModification(){
+  public void testContactModification() {
     app.getContactHelper().selectContact();
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Amy", "Jade", "Winehouse", "Rehab",
@@ -16,6 +16,6 @@ public class ContactModificationTests extends TestBase {
             "14", "September", "1983", "23", "July", "2011", null,
             "Camden, London", "Heaven", "Amy is still the best!"), false);
     app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHomePage();
   }
 }

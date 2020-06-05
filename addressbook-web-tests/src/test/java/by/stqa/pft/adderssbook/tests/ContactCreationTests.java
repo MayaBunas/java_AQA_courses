@@ -15,6 +15,6 @@ public class ContactCreationTests extends TestBase {
             "14", "September", "1983", "23", "July", "2011", "The Club 27",
             "Camden, London", "Heaven", "Amy was the best!"), true);
     app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHomePage();
   }
 }

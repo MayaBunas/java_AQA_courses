@@ -55,10 +55,6 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home page"));
-  }
-
   public void selectContact() {
     click(By.name("selected[]"));
   }

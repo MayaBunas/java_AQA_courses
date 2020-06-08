@@ -62,8 +62,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home page"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteSelectedContacts() {
@@ -94,6 +94,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public int getContactCount() {
-    return wd.findElements(By.name("entry")).size();
+    return wd.findElements(By.name("selected[]")).size();
   }
 }

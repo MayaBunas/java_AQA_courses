@@ -25,7 +25,7 @@ public class ContactModificationTests extends TestBase {
               "14", "September", "1983", "23", "July", "2011", "The Club 27",
               "Camden, London", "Heaven", "Amy was the best!"));
     }
-    app.getContactHelper().selectContact();
+    app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Amy", null, "Winehouse", null,
             null, null, null, null, null, null, null, null,

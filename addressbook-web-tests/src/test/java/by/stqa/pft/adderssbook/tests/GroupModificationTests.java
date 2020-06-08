@@ -15,7 +15,7 @@ public class GroupModificationTests extends TestBase {
               "The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.",
               "Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(before - 1);
     app.getGroupHelper().initGroupModification();
     app.getGroupHelper().fillGroupForm(new GroupData("The Club 27", "People still loving you, guys!", null));
     app.getGroupHelper().submitGroupModification();

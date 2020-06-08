@@ -5,11 +5,12 @@ import by.stqa.pft.adderssbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification() {
-    int before = app.getContactHelper().getContactCount();
     if (!app.getContactHelper().isThereAContact()) {
       app.getNavigationHelper().goToGroupPage();
       if (!app.getGroupHelper().isThereAGroup()) {
@@ -25,7 +26,8 @@ public class ContactModificationTests extends TestBase {
               "14", "September", "1983", "23", "July", "2011", "The Club 27",
               "Camden, London", "Heaven", "Amy was the best!"));
     }
-    app.getContactHelper().selectContact(before - 1);
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Amy", null, "Winehouse", null,
             null, null, null, null, null, null, null, null,
@@ -33,7 +35,7 @@ public class ContactModificationTests extends TestBase {
             null, null, null, "Amy is still the best!"), false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size());
   }
 }

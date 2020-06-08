@@ -2,12 +2,14 @@ package by.stqa.pft.adderssbook.tests;
 
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.GroupData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification() {
+    int before = app.getContactHelper().getContactCount();
     if (!app.getContactHelper().isThereAContact()) {
       app.getNavigationHelper().goToGroupPage();
       if (!app.getGroupHelper().isThereAGroup()) {
@@ -31,5 +33,7 @@ public class ContactModificationTests extends TestBase {
             null, null, null, "Amy is still the best!"), false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before);
   }
 }

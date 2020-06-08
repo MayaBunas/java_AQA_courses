@@ -2,12 +2,14 @@ package by.stqa.pft.adderssbook.tests;
 
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.GroupData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
+    int before = app.getContactHelper().getContactCount();
     app.getNavigationHelper().goToGroupPage();
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("The Club 27",
@@ -21,5 +23,7 @@ public class ContactCreationTests extends TestBase {
             "amy.winehouse@club27.com", "amy@rehab.com", "amy@winehouse.com", "https://en.wikipedia.org/wiki/Amy_Winehouse",
             "14", "September", "1983", "23", "July", "2011", "The Club 27",
             "Camden, London", "Heaven", "Amy was the best!"));
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before + 1);
   }
 }

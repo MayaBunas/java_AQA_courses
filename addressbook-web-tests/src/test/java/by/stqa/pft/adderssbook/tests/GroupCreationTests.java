@@ -11,13 +11,13 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    app.getNavigationHelper().goToGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    app.goTo().GroupPage();
+    List<GroupData> before = app.group().getList();
     GroupData group = new GroupData("The Club 27",
             "The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.",
             "Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse.");
-    app.getGroupHelper().createGroup(group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().create(group);
+    List<GroupData> after = app.group().getList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

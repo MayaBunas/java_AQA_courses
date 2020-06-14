@@ -14,9 +14,9 @@ public class GroupModificationTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().GroupPage();
     if (app.group().getList().size() == 0) {
-      app.group().create(new GroupData("The Club 27",
-              "The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.",
-              "Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
+      app.group().create(new GroupData().withName("The Club 27")
+              .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
+              .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
     }
   }
 
@@ -24,8 +24,8 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
     List<GroupData> before = app.group().getList();
     int index = before.size() - 1;
-    GroupData group = new GroupData(before.get(index).getId(), "The Club 27",
-            "People still loving you, guys!", null);
+    GroupData group = new GroupData().withId(before.get(index).getId()).withName("The Club 27")
+            .withHeader("People still loving you, guys!");
     app.group().modify(index, group);
     List<GroupData> after = app.group().getList();
     Assert.assertEquals(after.size(), before.size());

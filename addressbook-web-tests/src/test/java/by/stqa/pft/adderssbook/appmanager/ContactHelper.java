@@ -117,11 +117,8 @@ public class ContactHelper extends HelperBase {
         String surname = cells.get(1).getText();
         String name = cells.get(2).getText();
         String address = cells.get(3).getText();
-        ContactData contact = new ContactData(id, name, null, surname, null,
-                null, null, address, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null,
-                null, null, null, null);
-        contacts.add(contact);
+        contacts.add(new ContactData()
+                .withId(id).withFirstName(name).withLastName(surname).withAddress(address));
       } catch (IndexOutOfBoundsException e) {
         System.out.println("Table has been changed! Cells are not correct.");
       }

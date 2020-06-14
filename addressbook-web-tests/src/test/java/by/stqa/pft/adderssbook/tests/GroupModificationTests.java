@@ -5,15 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().GroupPage();
-    if (app.group().getList().size() == 0) {
+    if (app.group().getSet().size() == 0) {
       app.group().create(new GroupData().withName("The Club 27")
               .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
               .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
@@ -22,19 +21,16 @@ public class GroupModificationTests extends TestBase {
 
   @Test
   public void testGroupModification() {
-    List<GroupData> before = app.group().getList();
-    int index = before.size() - 1;
-    GroupData group = new GroupData().withId(before.get(index).getId()).withName("The Club 27")
+    Set<GroupData> before = app.group().getSet();
+    GroupData mofifiedGroup = before.iterator().next();
+    GroupData group = new GroupData().withId(mofifiedGroup.getId()).withName("The Club 27")
             .withHeader("People still loving you, guys!");
-    app.group().modify(index, group);
-    List<GroupData> after = app.group().getList();
+    app.group().modify(group);
+    Set<GroupData> after = app.group().getSet();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(mofifiedGroup);
     before.add(group);
-    Comparator<? super GroupData> ById = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(ById);
-    after.sort(ById);
     Assert.assertEquals(before, after);
   }
 }

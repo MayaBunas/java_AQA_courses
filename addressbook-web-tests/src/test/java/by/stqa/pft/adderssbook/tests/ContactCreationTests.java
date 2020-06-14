@@ -6,15 +6,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().GroupPage();
-    if (app.group().getList().size() == 0) {
+    if (app.group().getSet().size() == 0) {
       app.group().create(new GroupData().withName("The Club 27")
               .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
               .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
@@ -24,7 +23,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    List<ContactData> before = app.contact().getList();
+    Set<ContactData> before = app.contact().getSet();
     ContactData contact = new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")
             .withNickname("Rehab").withTitle("Best British Female Artist").withCompany("Club 27")
             .withAddress("Southgate, London").withHomePhone("+44 20 7123 1234").withMobilePhone("+44 20 7777 7777")
@@ -34,14 +33,11 @@ public class ContactCreationTests extends TestBase {
             .withBday("14").withBmonth("September").withByear("1983").withAday("23").withAmonth("July").withAyear("2011")
             .withGroup("The Club 27").withAddress2("Camden, London").withRealHome("Heaven").withNotes("Amy was the best!");
     app.contact().create(contact);
-    List<ContactData> after = app.contact().getList();
+    Set<ContactData> after = app.contact().getSet();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
     before.add(contact);
-    Comparator<? super ContactData> ById = (с1, с2) -> Integer.compare(с1.getId(), с2.getId());
-    before.sort(ById);
-    after.sort(ById);
     Assert.assertEquals(before, after);
   }
 }

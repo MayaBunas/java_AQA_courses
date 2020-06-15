@@ -78,8 +78,18 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public int elementId(WebElement element) {
+    return Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+  }
+
+  public void initContactModificationById(int id) {
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      if (id == elementId(cells.get(0))) {
+        cells.get(7).findElement(By.tagName("a")).click();
+      }
+    }
   }
 
   public void submitContactModification() {
@@ -94,8 +104,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+    initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
@@ -113,7 +122,7 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       try {
-        int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
+        int id = elementId(cells.get(0));
         String surname = cells.get(1).getText();
         String name = cells.get(2).getText();
         String address = cells.get(3).getText();

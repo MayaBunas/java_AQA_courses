@@ -100,6 +100,7 @@ public class ContactHelper extends HelperBase {
     goToCreateContactPage();
     fillContactForm(contact, true);
     submitContactCreation();
+    contactsCache = null;
     returnToHomePage();
   }
 
@@ -107,6 +108,7 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactsCache = null;
     returnToHomePage();
   }
 
@@ -114,10 +116,17 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     deleteSelectedContacts();
     closeAlertPopup();
+    contactsCache = null;
   }
 
+  private Contacts contactsCache = null;
+
   public Contacts getSet() {
-    Contacts contacts = new Contacts();
+    if (contactsCache != null){
+      return new Contacts(contactsCache);
+    }
+
+    contactsCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -126,12 +135,12 @@ public class ContactHelper extends HelperBase {
         String surname = cells.get(1).getText();
         String name = cells.get(2).getText();
         String address = cells.get(3).getText();
-        contacts.add(new ContactData()
+        contactsCache.add(new ContactData()
                 .withId(id).withFirstName(name).withLastName(surname).withAddress(address));
       } catch (IndexOutOfBoundsException e) {
         System.out.println("Table has been changed! Cells are not correct.");
       }
     }
-    return contacts;
+    return new Contacts(contactsCache);
   }
 }

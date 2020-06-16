@@ -17,8 +17,19 @@ public class GroupCreationTests extends TestBase {
             .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
             .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse.");
     app.group().create(group);
+    assertThat(app.group().count(), equalTo(before.size() + 1));
     Groups after = app.group().getSet();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  }
+
+  @Test
+  public void testGroupCreationWithApostrophe() throws Exception {
+    app.goTo().GroupPage();
+    Groups before = app.group().getSet();
+    GroupData group = new GroupData().withName("The Club 27'");
+    app.group().create(group);
+    assertThat(app.group().count(), equalTo(before.size()));
+    Groups after = app.group().getSet();
+    assertThat(after, equalTo(before));
   }
 }

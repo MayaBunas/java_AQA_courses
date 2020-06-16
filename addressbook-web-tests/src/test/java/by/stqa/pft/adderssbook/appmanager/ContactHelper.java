@@ -119,10 +119,14 @@ public class ContactHelper extends HelperBase {
     contactsCache = null;
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   private Contacts contactsCache = null;
 
   public Contacts getSet() {
-    if (contactsCache != null){
+    if (contactsCache != null) {
       return new Contacts(contactsCache);
     }
 

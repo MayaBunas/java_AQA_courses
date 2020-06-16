@@ -77,10 +77,14 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   private Groups groupsCache = null;
 
   public Groups getSet() {
-    if(groupsCache != null){
+    if (groupsCache != null) {
       return new Groups(groupsCache);
     }
 

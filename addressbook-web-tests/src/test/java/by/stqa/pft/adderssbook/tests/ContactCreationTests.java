@@ -34,8 +34,18 @@ public class ContactCreationTests extends TestBase {
             .withBday("14").withBmonth("September").withByear("1983").withAday("23").withAmonth("July").withAyear("2011")
             .withGroup("The Club 27").withAddress2("Camden, London").withRealHome("Heaven").withNotes("Amy was the best!");
     app.contact().create(contact);
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().getSet();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+  }
+
+  @Test
+  public void testContactCreationWithApostrophe() throws Exception {
+    Contacts before = app.contact().getSet();
+    ContactData contact = new ContactData().withFirstName("Amy'").withLastName("Winehouse'").withAddress("Southgate, ' London");
+    app.contact().create(contact);
+    assertThat(app.contact().count(), equalTo(before.size()));
+    Contacts after = app.contact().getSet();
+    assertThat(after, equalTo(before));
   }
 }

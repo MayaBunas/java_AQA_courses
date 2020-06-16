@@ -12,7 +12,7 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().GroupPage();
+    app.goTo().groupPage();
     if (app.group().getSet().size() == 0) {
       app.group().create(new GroupData().withName("The Club 27")
               .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")

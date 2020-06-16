@@ -11,7 +11,7 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    app.goTo().GroupPage();
+    app.goTo().groupPage();
     Groups before = app.group().getSet();
     GroupData group = new GroupData().withName("The Club 27")
             .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
@@ -24,7 +24,7 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreationWithApostrophe() throws Exception {
-    app.goTo().GroupPage();
+    app.goTo().groupPage();
     Groups before = app.group().getSet();
     GroupData group = new GroupData().withName("The Club 27'");
     app.group().create(group);

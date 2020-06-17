@@ -67,7 +67,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    wd.findElement(By.cssSelector(String.format("input[value = '%s']", id))).click();
   }
 
   public void deleteSelectedContacts() {
@@ -83,18 +83,19 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactModificationById(int id) {
-    List<WebElement> elements = wd.findElements(By.name("entry"));
+
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value = '%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
+
+    /*List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       if (id == elementId(cells.get(0))) {
         cells.get(7).findElement(By.tagName("a")).click();
       }
-    }
-
-    /* WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value = '%s']", id)));
-    WebElement row = checkbox.findElement(By.xpath("./../.."));
-    List<WebElement> cells = row.findElements(By.tagName("td"));
-    cells.get(7).findElement(By.tagName("a")).click(); */
+    }*/
 
     // wd.findElement(By.xpath(String.format("//input[@value = '%s']/../../td[8]/a", id))).click();
     // wd.findElement(By.xpath(String.format("tr[.//input[@value = '%s']]/td[8]/a", id))).click();

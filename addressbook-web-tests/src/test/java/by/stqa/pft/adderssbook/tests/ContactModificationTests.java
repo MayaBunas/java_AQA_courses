@@ -29,7 +29,8 @@ public class ContactModificationTests extends TestBase {
               .withEmail2("amy@rehab.com").withEmail3("amy@winehouse.com")
               .withHomepage("https://en.wikipedia.org/wiki/Amy_Winehouse")
               .withBday("14").withBmonth("September").withByear("1983").withAday("23").withAmonth("July").withAyear("2011")
-              .withGroup("The Club 27").withAddress2("Camden, London").withRealHome("Heaven").withNotes("Amy was the best!"));
+              .withGroup("The Club 27").withAddress2("Camden, London").withsecondHomePhone("+ (333) 333 - 333 - 333")
+              .withNotes("Amy was the best!"));
     }
   }
 

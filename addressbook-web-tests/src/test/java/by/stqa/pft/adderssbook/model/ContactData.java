@@ -25,7 +25,7 @@ public class ContactData {
   private String ayear;
   private String group;
   private String address2;
-  private String realHome;
+  private String secondHomePhone;
   private String notes;
 
   public int getId() {
@@ -124,8 +124,8 @@ public class ContactData {
     return address2;
   }
 
-  public String getRealHome() {
-    return realHome;
+  public String getSecondHomePhone() {
+    return secondHomePhone;
   }
 
   public String getNotes() {
@@ -252,8 +252,8 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withRealHome(String realHome) {
-    this.realHome = realHome;
+  public ContactData withsecondHomePhone(String secondHomePhone) {
+    this.secondHomePhone = secondHomePhone;
     return this;
   }
 

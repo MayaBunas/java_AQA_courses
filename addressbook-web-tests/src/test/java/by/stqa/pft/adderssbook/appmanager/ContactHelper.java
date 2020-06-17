@@ -51,7 +51,7 @@ public class ContactHelper extends HelperBase {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
     type(By.name("address2"), contactData.getAddress2());
-    type(By.name("phone2"), contactData.getRealHome());
+    type(By.name("phone2"), contactData.getSecondHomePhone());
     type(By.name("notes"), contactData.getNotes());
   }
 
@@ -90,6 +90,15 @@ public class ContactHelper extends HelperBase {
         cells.get(7).findElement(By.tagName("a")).click();
       }
     }
+
+    /* WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value = '%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click(); */
+
+    // wd.findElement(By.xpath(String.format("//input[@value = '%s']/../../td[8]/a", id))).click();
+    // wd.findElement(By.xpath(String.format("tr[.//input[@value = '%s']]/td[8]/a", id))).click();
+    // wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void submitContactModification() {

@@ -6,6 +6,8 @@ import by.stqa.pft.adderssbook.model.GroupData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.*;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -25,8 +27,9 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     Contacts before = app.contact().getSet();
+    File photo = new File ("src/test/resources/amy_winehouse.jpg");
     ContactData contact = new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")
-            .withNickname("Rehab").withTitle("Best British Female Artist").withCompany("Club 27")
+            .withNickname("Rehab").withPhoto(photo).withTitle("Best British Female Artist").withCompany("Club 27")
             .withAddress("Southgate, London").withHomePhone("+44 20 7123 1234").withMobilePhone("+44 20 7777 7777")
             .withWorkPhone("+44 20 7111 1111").withFax("+44 20 7666 6666").withEmail1("amy.winehouse@club27.com")
             .withEmail2("amy@rehab.com").withEmail3("amy@winehouse.com")

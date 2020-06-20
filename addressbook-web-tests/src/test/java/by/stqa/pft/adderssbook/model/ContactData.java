@@ -1,11 +1,14 @@
 package by.stqa.pft.adderssbook.model;
 
+import java.io.File;
+
 public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstName;
   private String middleName;
   private String lastName;
   private String nickname;
+  private File photo;
   private String title;
   private String company;
   private String address;
@@ -48,6 +51,10 @@ public class ContactData {
 
   public String getNickname() {
     return nickname;
+  }
+
+  public File getPhoto() {
+    return photo;
   }
 
   public String getTitle() {
@@ -166,6 +173,12 @@ public class ContactData {
     this.nickname = nickname;
     return this;
   }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
 
   public ContactData withTitle(String title) {
     this.title = title;

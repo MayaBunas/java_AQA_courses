@@ -15,7 +15,7 @@ public class GroupCreationTests extends TestBase {
     Groups before = app.group().getSet();
     GroupData group = new GroupData().withName("The Club 27")
             .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
-            .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse.");
+            .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse.");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() + 1));
     Groups after = app.group().getSet();

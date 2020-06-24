@@ -21,7 +21,7 @@ public class ContactMainPageDataTests extends TestBase {
       if (app.group().getSet().size() == 0) {
         app.group().create(new GroupData().withName("The Club 27")
                 .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
-                .wthFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
+                .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
       }
       app.goTo().homePage();
       app.contact().create(new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")

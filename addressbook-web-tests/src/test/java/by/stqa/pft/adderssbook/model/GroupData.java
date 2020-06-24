@@ -37,7 +37,7 @@ public class GroupData {
     return this;
   }
 
-  public GroupData wthFooter(String footer) {
+  public GroupData withFooter(String footer) {
     this.footer = footer;
     return this;
   }

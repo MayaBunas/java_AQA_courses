@@ -6,12 +6,13 @@ import by.stqa.pft.adderssbook.model.GroupData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
+
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -27,7 +28,7 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     Contacts before = app.contact().getSet();
-    File photo = new File ("src/test/resources/amy_winehouse.jpg");
+    File photo = new File("src/test/resources/amy_winehouse.jpg");
     ContactData contact = new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")
             .withNickname("Rehab").withPhoto(photo).withTitle("Best British Female Artist").withCompany("Club 27")
             .withAddress("Southgate, London").withHomePhone("+44 20 7123 1234").withMobilePhone("+44 20 7777 7777")

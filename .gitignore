@@ -13,3 +13,10 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+addressbook-web-tests/src/test/resources/contacts.csv
+addressbook-web-tests/src/test/resources/contacts.json
+addressbook-web-tests/src/test/resources/contacts.xml
+addressbook-web-tests/src/test/resources/groups.csv
+addressbook-web-tests/src/test/resources/groups.json
+addressbook-web-tests/src/test/resources/groups.xml
+*.log

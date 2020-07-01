@@ -161,7 +161,11 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo != null) {
+      return new File(photo);
+    } else {
+      return null;
+    }
   }
 
   public String getTitle() {
@@ -217,7 +221,11 @@ public class ContactData {
   }
 
   public String getBday() {
-    return Byte.toString(bday);
+    if (bday != null) {
+      return Byte.toString(bday);
+    } else {
+      return null;
+    }
   }
 
   public String getBmonth() {
@@ -229,7 +237,11 @@ public class ContactData {
   }
 
   public String getAday() {
-    return Byte.toString(aday);
+    if (aday != null) {
+      return Byte.toString(aday);
+    } else {
+      return null;
+    }
   }
 
   public String getAmonth() {
@@ -282,7 +294,9 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
+    if (photo != null) {
+      this.photo = photo.getPath();
+    }
     return this;
   }
 
@@ -353,7 +367,9 @@ public class ContactData {
   }
 
   public ContactData withBday(String bday) {
-    this.bday = Byte.parseByte(bday);
+    if (bday != null) {
+      this.bday = Byte.parseByte(bday);
+    }
     return this;
   }
 
@@ -368,7 +384,9 @@ public class ContactData {
   }
 
   public ContactData withAday(String aday) {
-    this.aday = Byte.parseByte(aday);
+    if (aday != null) {
+      this.aday = Byte.parseByte(aday);
+    }
     return this;
   }
 
@@ -402,6 +420,7 @@ public class ContactData {
     return this;
   }
 
+
   @Override
   public String toString() {
     return "ContactData{" +
@@ -421,16 +440,59 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
     if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-    return address != null ? address.equals(that.address) : that.address == null;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+    if (title != null ? !title.equals(that.title) : that.title != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
+    if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
+    if (email1 != null ? !email1.equals(that.email1) : that.email1 != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+    if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
+    if (bday != null ? !bday.equals(that.bday) : that.bday != null) return false;
+    if (bmonth != null ? !bmonth.equals(that.bmonth) : that.bmonth != null) return false;
+    if (byear != null ? !byear.equals(that.byear) : that.byear != null) return false;
+    if (aday != null ? !aday.equals(that.aday) : that.aday != null) return false;
+    if (amonth != null ? !amonth.equals(that.amonth) : that.amonth != null) return false;
+    if (ayear != null ? !ayear.equals(that.ayear) : that.ayear != null) return false;
+    if (address2 != null ? !address2.equals(that.address2) : that.address2 != null) return false;
+    if (secondHomePhone != null ? !secondHomePhone.equals(that.secondHomePhone) : that.secondHomePhone != null)
+      return false;
+    return notes != null ? notes.equals(that.notes) : that.notes == null;
   }
 
   @Override
   public int hashCode() {
     int result = id;
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+    result = 31 * result + (title != null ? title.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
+    result = 31 * result + (fax != null ? fax.hashCode() : 0);
+    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
+    result = 31 * result + (bday != null ? bday.hashCode() : 0);
+    result = 31 * result + (bmonth != null ? bmonth.hashCode() : 0);
+    result = 31 * result + (byear != null ? byear.hashCode() : 0);
+    result = 31 * result + (aday != null ? aday.hashCode() : 0);
+    result = 31 * result + (amonth != null ? amonth.hashCode() : 0);
+    result = 31 * result + (ayear != null ? ayear.hashCode() : 0);
+    result = 31 * result + (address2 != null ? address2.hashCode() : 0);
+    result = 31 * result + (secondHomePhone != null ? secondHomePhone.hashCode() : 0);
+    result = 31 * result + (notes != null ? notes.hashCode() : 0);
     return result;
   }
 }

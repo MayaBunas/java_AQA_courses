@@ -16,14 +16,14 @@ public class ContactMainPageDataTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
-    if (app.contact().getSet().size() == 0) {
-      app.goTo().groupPage();
-      if (app.group().getSet().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      if (app.db().groups().size() == 0) {
+        app.goTo().groupPage();
         app.group().create(new GroupData().withName("The Club 27")
                 .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
                 .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
+        app.goTo().homePage();
       }
-      app.goTo().homePage();
       app.contact().create(new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")
               .withNickname("Rehab").withTitle("Best British Female Artist").withCompany("Club 27")
               .withAddress("Southgate, London").withHomePhone("+44 20 7123 1234")

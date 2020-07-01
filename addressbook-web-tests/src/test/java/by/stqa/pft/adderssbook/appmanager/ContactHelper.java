@@ -44,7 +44,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("aday"));
     selectByVisibleText(By.name("aday"), contactData.getAday());
     click(By.name("amonth"));
-    selectByVisibleText(By.name("amonth"), contactData.getAmonth());
+    selectByDropDownValue(By.name("amonth"), contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
     if (creation) {
       selectByVisibleText(By.name("new_group"), contactData.getGroup());

@@ -45,6 +45,15 @@ public class HelperBase {
     }
   }
 
+  protected void selectByDropDownValue(By locator, String text) {
+    if (text != null) {
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (!text.equals(existingText)) {
+        new Select(wd.findElement(locator)).selectByValue(text);
+      }
+    }
+  }
+
   public boolean isElementPresent(By locator) {
     try {
       wd.findElement(locator);

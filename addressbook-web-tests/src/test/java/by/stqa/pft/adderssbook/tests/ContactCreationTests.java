@@ -56,32 +56,32 @@ public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().getSet().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("The Club 27")
               .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
               .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
+      app.goTo().homePage();
     }
-    app.goTo().homePage();
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
-    Contacts before = app.contact().getSet();
+    Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/amy_winehouse.jpg");
     app.contact().create(contact.withPhoto(photo));
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().getSet();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
   @Test
   public void testContactCreationWithApostrophe() throws Exception {
-    Contacts before = app.contact().getSet();
+    Contacts before = app.db().contacts();
     ContactData contact = new ContactData().withFirstName("Amy'").withLastName("Winehouse'").withAddress("Southgate, ' London");
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().getSet();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before));
   }
 }

@@ -3,6 +3,7 @@ package by.stqa.pft.adderssbook.tests;
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.Contacts;
 import by.stqa.pft.adderssbook.model.GroupData;
+import by.stqa.pft.adderssbook.model.Groups;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
@@ -67,9 +68,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/amy_winehouse.jpg");
-    app.contact().create(contact.withPhoto(photo));
+    app.contact().create(contact.withPhoto(photo).inGroup(groups.iterator().next()));
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));

@@ -2,6 +2,7 @@ package by.stqa.pft.adderssbook.tests;
 
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.GroupData;
+import by.stqa.pft.adderssbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,7 @@ public class ContactMainPageDataTests extends TestBase {
                 .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
         app.goTo().homePage();
       }
+      Groups groups = app.db().groups();
       app.contact().create(new ContactData().withFirstName("Amy").withMiddleName("Jade").withLastName("Winehouse")
               .withNickname("Rehab").withTitle("Best British Female Artist").withCompany("Club 27")
               .withAddress("Southgate, London").withHomePhone("+44 20 7123 1234")
@@ -31,7 +33,7 @@ public class ContactMainPageDataTests extends TestBase {
               .withEmail2("amy@rehab.com").withEmail3("amy@winehouse.com")
               .withHomepage("https://en.wikipedia.org/wiki/Amy_Winehouse")
               .withBday("14").withBmonth("September").withByear("1983").withAday("23").withAmonth("July").withAyear("2011")
-              .withGroup("The Club 27").withAddress2("Camden, London").withsecondHomePhone("+ (333) 333 - 333 - 333")
+              .inGroup(groups.iterator().next()).withAddress2("Camden, London").withsecondHomePhone("+ (333) 333 - 333 - 333")
               .withNotes("Amy was the best!"));
     }
   }

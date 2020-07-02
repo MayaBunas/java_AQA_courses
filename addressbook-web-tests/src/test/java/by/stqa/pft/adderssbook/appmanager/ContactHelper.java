@@ -47,7 +47,10 @@ public class ContactHelper extends HelperBase {
     selectByDropDownValue(By.name("amonth"), contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
     if (creation) {
-      selectByVisibleText(By.name("new_group"), contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        selectByVisibleText(By.name("new_group"), contactData.getGroups().iterator().next().getName());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

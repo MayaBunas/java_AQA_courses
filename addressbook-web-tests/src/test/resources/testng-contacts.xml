@@ -7,6 +7,8 @@
             <class name="by.stqa.pft.adderssbook.tests.ContactMainPageDataTests"/>
             <class name="by.stqa.pft.adderssbook.tests.ContactModificationTests"/>
             <class name="by.stqa.pft.adderssbook.tests.ContactDeletionTests"/>
+            <class name="by.stqa.pft.adderssbook.tests.ContactAdditionToGroupTests"/>
+            <class name="by.stqa.pft.adderssbook.tests.ContactDeletionFromGroupTests"/>
         </classes>
     </test>
 </suite>

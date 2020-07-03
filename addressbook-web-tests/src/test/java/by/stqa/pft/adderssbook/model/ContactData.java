@@ -426,6 +426,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withoutGroup(GroupData group) {
+    groups.remove(group);
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -469,7 +474,8 @@ public class ContactData {
     if (address2 != null ? !address2.equals(that.address2) : that.address2 != null) return false;
     if (secondHomePhone != null ? !secondHomePhone.equals(that.secondHomePhone) : that.secondHomePhone != null)
       return false;
-    return notes != null ? notes.equals(that.notes) : that.notes == null;
+    if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
@@ -499,6 +505,7 @@ public class ContactData {
     result = 31 * result + (address2 != null ? address2.hashCode() : 0);
     result = 31 * result + (secondHomePhone != null ? secondHomePhone.hashCode() : 0);
     result = 31 * result + (notes != null ? notes.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
   }
 }

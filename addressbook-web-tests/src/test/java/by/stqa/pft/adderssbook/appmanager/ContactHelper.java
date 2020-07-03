@@ -2,6 +2,7 @@ package by.stqa.pft.adderssbook.appmanager;
 
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.Contacts;
+import by.stqa.pft.adderssbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -70,6 +71,13 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home page"));
   }
 
+  public void returnToGroupContactsPage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.cssSelector("i>a"));
+  }
+
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector(String.format("input[value = '%s']", id))).click();
   }
@@ -110,6 +118,26 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
+  public void addToGroup() {
+    click(By.xpath("//input[@name='add']"));
+  }
+
+  public void removeFromGroup() {
+    click(By.xpath("//input[@name='remove']"));
+  }
+
+  public void selectForContactGroupById(int id) {
+    selectByDropDownValue(By.name("to_group"), Integer.toString(id));
+  }
+
+  public void selectGroupPageById(int id) {
+    selectByDropDownValue(By.name("group"), Integer.toString(id));
+  }
+
+  public void selectAllGroupsPage() {
+    selectByVisibleText(By.name("group"), "[all]");
+  }
+
   public void create(ContactData contact) {
     goToCreateContactPage();
     fillContactForm(contact, true);
@@ -131,6 +159,20 @@ public class ContactHelper extends HelperBase {
     deleteSelectedContacts();
     closeAlertPopup();
     contactsCache = null;
+  }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    selectForContactGroupById(group.getId());
+    addToGroup();
+  }
+
+  public void deleteContactFromGroup(ContactData contact, GroupData group) {
+    selectGroupPageById(group.getId());
+    selectContactById(contact.getId());
+    removeFromGroup();
+    returnToGroupContactsPage();
+    selectAllGroupsPage();
   }
 
   public int count() {

@@ -50,7 +50,7 @@ public class ContactHelper extends HelperBase {
     if (creation) {
       if (contactData.getGroups().size() > 0) {
         Assert.assertTrue(contactData.getGroups().size() == 1);
-        selectByVisibleText(By.name("new_group"), contactData.getGroups().iterator().next().getName());
+        selectByDropDownValue(By.name("new_group"), Integer.toString(contactData.getGroups().iterator().next().getId()));
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));

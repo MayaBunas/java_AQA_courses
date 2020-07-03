@@ -12,13 +12,7 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
-      app.group().create(new GroupData().withName("The Club 27")
-              .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
-              .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
-    }
+    createGroupIfNotExists();
   }
 
   @Test

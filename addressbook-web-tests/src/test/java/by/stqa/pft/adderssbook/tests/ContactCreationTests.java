@@ -2,7 +2,6 @@ package by.stqa.pft.adderssbook.tests;
 
 import by.stqa.pft.adderssbook.model.ContactData;
 import by.stqa.pft.adderssbook.model.Contacts;
-import by.stqa.pft.adderssbook.model.GroupData;
 import by.stqa.pft.adderssbook.model.Groups;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -57,13 +56,7 @@ public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
-      app.group().create(new GroupData().withName("The Club 27")
-              .withHeader("The 27 Club is a list consisting mostly of popular musicians, artists, or actors who died at age 27.")
-              .withFooter("Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain, Amy Winehouse."));
-      app.goTo().homePage();
-    }
+    createGroupIfNotExists();
   }
 
   @Test(dataProvider = "validContactsFromJson")

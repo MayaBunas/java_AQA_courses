@@ -38,22 +38,22 @@ public class MailHelper {
   public static MailMessage toModelMail(WiserMessage m) {
     try {
       MimeMessage mm = m.getMimeMessage();
-      return new MailMessage(mm.getAllRecipients()[0].toString(), (String) mm.getContent());
-    } catch (MessagingException e) {
-      e.printStackTrace();
-      return null;
-    } catch (IOException e) {
+      return new MailMessage(mm.getAllRecipients()[0].toString(), mm.getSubject(), (String) mm.getContent());
+    } catch (MessagingException | IOException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public String findLink(List<MailMessage> mailMessages, String email) {
-    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
+  public MailMessage findEmailBySubject(List<MailMessage> mailMessages, String subject, String email) {
+    return mailMessages.stream().filter((m) -> m.to.equals(email))
+            .filter((m) -> m.subject.equals(subject)).findFirst().get();
+  }
+
+  public String findLink(MailMessage mailMessage) {
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }
-
 
   public void start() {
     wiser.start();

@@ -61,7 +61,7 @@ public class JamesHelper {
     try {
       telnet.connect(mailserver, port);
       in = telnet.getInputStream();
-      out = new PrintStream( telnet.getOutputStream() );
+      out = new PrintStream(telnet.getOutputStream());
 
     } catch (Exception e) {
       // TODO Auto-generated catch block
@@ -81,7 +81,7 @@ public class JamesHelper {
     write(password);
 
     // Read welcome message
-    readUntil("Welcome "+login+". HELP for a list of commands");
+    readUntil("Welcome " + login + ". HELP for a list of commands");
   }
 
   private String readUntil(String pattern) {
@@ -165,7 +165,7 @@ public class JamesHelper {
 
   public static MailMessage toModelMail(Message m) {
     try {
-      return new MailMessage(m.getAllRecipients()[0].toString(), (String) m.getContent());
+      return new MailMessage(m.getAllRecipients()[0].toString(), m.getSubject(), (String) m.getContent());
     } catch (MessagingException e) {
       e.printStackTrace();
       return null;

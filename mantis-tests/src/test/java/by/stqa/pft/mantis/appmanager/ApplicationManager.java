@@ -26,6 +26,7 @@ public class ApplicationManager {
   private DbHelper dbHelper;
   private UsersHelper usersHelper;
   private AdminHelper adminHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -66,11 +67,11 @@ public class ApplicationManager {
     return wd;
   }
 
-  public RegistrationHelper registration() {
-    if (registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
+  public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
     }
-    return registrationHelper;
+    return soapHelper;
   }
 
   public FtpHelper ftp() {
@@ -92,6 +93,13 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
+  }
+
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
   }
 
   public DbHelper db() {

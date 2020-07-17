@@ -30,10 +30,9 @@ public class RestNotAssuredTests {
   private Set<Issue> getIssues() throws IOException {
     String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json"))
             .returnContent().asString();
-    JsonElement parsed = new JsonParser().parse(json);
+    JsonElement parsed = JsonParser.parseString(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
-    }.getType());
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
 
   private Executor getExecutor() {
@@ -45,7 +44,7 @@ public class RestNotAssuredTests {
             .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
                     new BasicNameValuePair("description", newIssue.getDescription())))
             .returnContent().asString();
-    JsonElement parsed = new JsonParser().parse(json);
+    JsonElement parsed = JsonParser.parseString(json);
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 }

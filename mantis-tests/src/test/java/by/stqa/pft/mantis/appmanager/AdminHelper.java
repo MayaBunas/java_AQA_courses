@@ -18,7 +18,7 @@ public class AdminHelper extends HelperBase {
   }
 
   public void startManageUser(User user) {
-    click(By.xpath("//div[@id='sidebar']/ul/li[6]/a/i"));
+    click(By.xpath("//div[@id='sidebar']/ul/li[7]/a/i"));
     click(By.linkText("Manage Users"));
     //type(By.name("search"), user.getUsername());
     //click(By.cssSelector("input[value='Apply Filter']"));

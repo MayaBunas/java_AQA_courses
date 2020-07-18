@@ -60,3 +60,18 @@ task testAll(type: Test) {
         systemProperty('verifyUI', "${verifyUI}")
     }
 }
+
+task testJenkins(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-jenkins.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty('browser', "${browser}")
+    }
+    if (project.hasProperty('target')) {
+        systemProperty('target', "${target}")
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty('verifyUI', "${verifyUI}")
+    }
+}
